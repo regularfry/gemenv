@@ -40,8 +40,8 @@ You can see that sourcing the activate script does three things:
 3. It adds the GEM\_HOME bin/ directory to your $PATH so that
    gem-installed binaries are available.
 
-This is all it does.  There is currently no way to deactivate a gemenv
-environment, although this could be added in the future.
+This is (almost) all it does.  There is currently no way to deactivate a
+gemenv environment, although this could be added in the future.
 
 Anything which respects GEM\_HOME should work with gemenv, so you can,
 for instance, use bundler to install gems into a gemenv.
