@@ -1,0 +1,19 @@
+VIRTUAL_ENV="<%= @env_dir %>"
+export VIRTUAL_ENV
+
+PATH="$VIRTUAL_ENV/gem_home/bin:$PATH"
+export PATH
+
+if [ -n "$GEM_HOME" ]; then
+  unset GEM_HOME
+fi
+
+GEM_HOME=$VIRTUAL_ENV/gem_home
+export GEM_HOME
+GEM_PATH=$(gem env home)
+
+PS1="{gemenv:$(basename $VIRTUAL_ENV)} $PS1"
+
+if [ -n "$BASH" -o -n "$ZSH_VERSION" ] ; then
+    hash -r 2> /dev/null
+fi
