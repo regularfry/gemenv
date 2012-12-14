@@ -16,7 +16,7 @@ Here's an example session:
     $ cd /tmp
     $ gemenv my-new-env
     $ ls my-new-env
-    bin/ gem\_home
+    bin/ gem_home
     $ source my-new-env/bin/activate
     {gemenv:my-new-env}
     $ gem install rake
@@ -26,7 +26,7 @@ Here's an example session:
     Installing ri documentation for rake-10.0.3...
     Installing RDoc documentation for rake-10.0.3...
     {gemenv:my-new-env}
-    $ ls my-new-env/gem\_home/gems
+    $ ls my-new-env/gem_home/gems
     rake-10.0.3
     {gemenv:my-new-env}
     $ which rake
