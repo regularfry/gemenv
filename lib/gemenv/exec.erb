@@ -1,3 +1,6 @@
+#!/bin/bash
+
+# Pick this up in $PS1 if you want
 VIRTUAL_ENV="<%= @env_path %>"
 export VIRTUAL_ENV
 
@@ -12,8 +15,8 @@ GEM_HOME=$VIRTUAL_ENV/gem_home
 export GEM_HOME
 GEM_PATH=$(gem env home)
 
-PS1="{gemenv:$(basename $VIRTUAL_ENV)} $PS1"
-
-if [ -n "$BASH" -o -n "$ZSH_VERSION" ] ; then
-    hash -r 2> /dev/null
+if [ -z "${SHELL}" ]; then
+   export SHELL=/bin/bash
 fi
+
+exec "$@"

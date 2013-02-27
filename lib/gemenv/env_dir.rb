@@ -44,23 +44,25 @@ module Gemenv
   class EnvDir
     attr_reader :path
 
-    def initialize( env_dir, script_class )
+    def initialize( env_dir, *script_classes )
       @path = Path.new( env_dir )
-      @script_class = script_class
+      @script_classes = script_classes
     end
 
     def make
+      scripts = make_scripts( @path, @script_classes )
+
       @path.mkdir_p
-      
-      make_activate()
+      scripts.each do |script| script.render end
+
       make_gem_home()
       self
     end
 
     private
-    def make_activate
-      activate_path.dirname.mkdir_p
-      activate_path.write( activate_contents )
+
+    def make_scripts( env_path, script_classes )
+      script_classes.map { |cls| cls.new( env_path ) }
     end
 
 
@@ -69,18 +71,10 @@ module Gemenv
     end
 
 
-    def activate_path
-      @path/"bin"/"activate"
-    end
-
     def gem_home_path
       @path/"gem_home"
     end
 
-    def activate_contents
-      @script_class.new( @path ).to_bash
-    end
-      
 
   end
 end

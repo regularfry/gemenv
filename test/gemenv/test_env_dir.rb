@@ -5,16 +5,9 @@ require 'pathname'
 
 require 'test/helper'
 require 'gemenv/env_dir'
+require 'gemenv/activate_script'
 
 
-class FakeScript
-  def initialize( _ )
-  end
-
-  def to_bash
-    "Script Contents!"
-  end
-end
 
 
 module Gemenv
@@ -22,7 +15,7 @@ module Gemenv
     def test_builds_dir_structure
       Dir.mktmpdir("envdir") do |tmpdir|
         env_dirname = File.join( tmpdir, "foobar" )
-        env_dir = EnvDir.new( env_dirname, FakeScript )
+        env_dir = EnvDir.new( env_dirname, ActivateScript )
         env_dir.make
 
         assert_equal( File.expand_path( env_dirname ),
