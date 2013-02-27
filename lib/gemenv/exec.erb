@@ -1,22 +1,5 @@
 #!/bin/bash
 
-# Pick this up in $PS1 if you want
-VIRTUAL_ENV="<%= @env_path %>"
-export VIRTUAL_ENV
-
-PATH="$VIRTUAL_ENV/gem_home/bin:$PATH"
-export PATH
-
-if [ -n "$GEM_HOME" ]; then
-  unset GEM_HOME
-fi
-
-GEM_HOME=$VIRTUAL_ENV/gem_home
-export GEM_HOME
-GEM_PATH=$(gem env home)
-
-if [ -z "${SHELL}" ]; then
-   export SHELL=/bin/bash
-fi
+. "<%= @env_path/"bin"/"activate" %>"
 
 exec "$@"
