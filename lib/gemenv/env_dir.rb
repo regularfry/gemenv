@@ -26,8 +26,8 @@ class Path
     @pathname.__send__( sym, *args, &blk )
   end
 
-  def respond_to?( sym )
-    super || @pathname.respond_to?( sym )
+  def respond_to?( sym, include_all=false )
+    super || @pathname.respond_to?( sym, include_all )
   end
 
   def dirname
